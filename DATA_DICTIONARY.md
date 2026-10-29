@@ -2,7 +2,7 @@
 
 ## Symptom summary tables
 
-`model`: `six_covariates` is the primary discovery model; `six_plus_group` adds StD/HC group membership; `FD_TIV` is the validation model. `scale` identifies SCL-90 or SDS. `n` is the number of participants. `rho` is Spearman's correlation of model residuals. `p` is the two-sided MATLAB Spearman P value. `p_BH` is the Benjamini–Hochberg adjusted P value across SCL-90, SDS and PHQ within the corresponding discovery model. Validation P values are unadjusted.
+`model`: `six_covariates` is the primary discovery model; `FD_TIV` is the validation model. `scale` identifies SCL-90 or SDS. `n` is the number of participants. `rho` is Spearman's correlation of model residuals. `p` is the two-sided MATLAB Spearman P value. `p_BH` is the Benjamini–Hochberg adjusted P value across SCL-90, SDS and PHQ within the corresponding discovery model. Validation P values are unadjusted.
 
 ## Regional group results
 

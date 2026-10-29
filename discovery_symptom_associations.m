@@ -2,7 +2,6 @@ function out = discovery_symptom_associations(source)
 % SOURCE is a private participant-level workbook; returns aggregate statistics only.
 % Supplementary check of existing features; original inputs and manuscript unchanged.
 % Primary: Spearman of OLS residuals on six manuscript covariates.
-% Sensitivity: additionally remove Group. This is not rank-first partialcorr.
 % P values use MATLAB corr on residuals, matching the prior validation procedure.
 
 T=readtable(source,'VariableNamingRule','preserve');
@@ -31,14 +30,14 @@ out=struct('status','analysis of established cohort',...
  'template','32 discovery HC; leave-one-out for HC; fixed across symptom tests',...
  'covariates',{covs},'method','OLS residuals followed by two-sided Spearman; same procedure as validation',...
  'p_method','MATLAB corr(Type=Spearman) applied to residuals; not a rank-first partial Spearman test',...
- 'FDR_family',{{'SCL90','SDS','PHQ'}},'inference','post hoc sensitivity check; not new confirmatory evidence');
-scales={'SCL90','SDS','PHQ'};modes={'unadjusted','six_covariates','six_plus_group'};
+ 'FDR_family',{{'SCL90','SDS','PHQ'}},'inference','covariate-adjusted symptom associations in the established cohort');
+scales={'SCL90','SDS','PHQ'};modes={'unadjusted','six_covariates'};
 for mi=1:numel(modes)
  mode=modes{mi};ps=nan(3,1);rs=ps;results=struct;
  for si=1:numel(scales)
   scale=scales{si};A=D(isfinite(D.(scale)),:);xx=A.typ;yy=A.(scale);
   if mi>1
-   cv=covs;if mi==3,cv=[cv,{'Group'}];end
+   cv=covs;
    C=A{:,cv};C=(C-mean(C))./std(C);design=[ones(height(A),1),C];
    assert(rank(design)==size(design,2));
    lm_x=fitlm(C,xx);lm_y=fitlm(C,yy);xx=lm_x.Residuals.Raw;yy=lm_y.Residuals.Raw;

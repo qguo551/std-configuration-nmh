@@ -4,7 +4,7 @@ Analysis code and aggregate results accompanying the manuscript “Individualize
 
 ## Contents
 
-- `discovery_symptom_associations.m`: the discovery-sample symptom analysis, including the six-covariate model and the additional group-adjusted sensitivity analysis.
+- `discovery_symptom_associations.m`: the discovery-sample symptom analysis, including the six-covariate model.
 - `validation_symptom_associations.m`: the validation StD symptom analysis adjusted for mean framewise displacement and total intracranial volume.
 - `discovery_symptom_summary.csv` and `validation_symptom_summary.csv`: aggregate results from the verified analysis outputs, retaining their original numerical precision.
 - `regional_group_results.csv`: the saved 210-region discovery ANCOVA result table, including the nine regions with FDR-adjusted P < 0.05.
@@ -32,7 +32,7 @@ validation = validation_symptom_associations('/path/to/validation_workbook.xlsx'
 
 Both functions return aggregate statistics and print aggregate results. They do not export participant rows. The discovery calculation retains PHQ as the third test in the established FDR correction family; the released symptom tables report SCL-90 and SDS, as in the manuscript.
 
-The discovery reference uses the 32 healthy controls, leaving out the target participant for each healthy control. The validation reference uses its own 16 healthy controls. The symptom correlations are two-sided Spearman correlations of separate ordinary-least-squares residuals. The discovery main model adjusts for age, sex, only-child status, single-parent status, mean framewise displacement and total intracranial volume. Group membership is added only in the sensitivity model. Validation adjusts for mean framewise displacement and total intracranial volume within the 29 participants with StD.
+The discovery reference uses the 32 healthy controls, leaving out the target participant for each healthy control. The validation reference uses its own 16 healthy controls. The symptom correlations are two-sided Spearman correlations of separate ordinary-least-squares residuals. The discovery main model adjusts for age, sex, only-child status, single-parent status, mean framewise displacement and total intracranial volume. Validation adjusts for mean framewise displacement and total intracranial volume within the 29 participants with StD.
 
 ## Checking aggregate tables
 

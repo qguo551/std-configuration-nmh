@@ -9,8 +9,8 @@ def read(name):
 discovery = read("discovery_symptom_summary.csv")
 validation = read("validation_symptom_summary.csv")
 regional = read("regional_group_results.csv")
-assert len(discovery) == 4 and len(validation) == 2 and len(regional) == 210
-assert {r["model"] for r in discovery} == {"six_covariates", "six_plus_group"}
+assert len(discovery) == 2 and len(validation) == 2 and len(regional) == 210
+assert {r["model"] for r in discovery} == {"six_covariates"}
 assert all(int(r["n"]) == 102 for r in discovery)
 assert all(int(r["n"]) == 29 for r in validation)
 for r in discovery + validation:
@@ -22,4 +22,4 @@ assert all(int(r["n_used"]) == 102 for r in regional)
 assert sum(float(r["p_FDR"]) < .05 for r in regional) == 9
 for r in regional:
     assert math.isclose(float(r["mean_Dep"]) - float(r["mean_HC"]), float(r["mean_diff"]), abs_tol=1e-12)
-print("Aggregate tables passed: 4 discovery associations, 2 validation associations, 210 regions; 9 FDR-significant regions.")
+print("Aggregate tables passed: 2 discovery associations, 2 validation associations, 210 regions; 9 FDR-significant regions.")
